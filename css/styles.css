@@ -369,12 +369,12 @@ input:focus,
 /* Modal Form - Checklist */
 
 .checkbox-container {
-  margin: 1rem 0rem;
+  margin: 0rem 0rem;
 }
 
 .form-check {
   list-style: none;
-  margin: 1rem;
+  margin: 0.8rem;
   position: relative;
 }
 
