@@ -11,9 +11,6 @@ inputBox.onkeyup = () => {
     }else {
         addBtn.classList.remove("active");
     }
-    if(userdata == null){
-        return userdata;
-    }
 }
 
 showTasks();
