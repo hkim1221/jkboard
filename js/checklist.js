@@ -11,26 +11,40 @@ inputBox.onkeyup = () => {
     }else {
         addBtn.classList.remove("active");
     }
-    if(userdata == null){
-        return userdata;
-    }
 }
 
 showTasks();
 //   When user click add button
 
-addBtn.onclick = () => {
-    let userData = inputBox.value;
-    let getLocalStorage = localStorage.getItem("New Todo"); 
-    if(getLocalStorage == null){
-listArr = [];
-    }else{
+addBtn.addEventListener("click", (e) => {
+    const userData = inputBox.value;
+    const getLocalStorage = localStorage.getItem("New Todo");
+    if(!userData){
+    return
+    }if(getLocalStorage == null){
+        listArr = [];
+    }else{ 
         listArr = JSON.parse(getLocalStorage);
     }
     listArr.push(userData);
     localStorage.setItem("New Todo", JSON.stringify(listArr));
     showTasks();
-}
+});
+
+
+
+// addBtn.onclick = () => {
+//     let userData = inputBox.value;
+//     let getLocalStorage = localStorage.getItem("New Todo"); 
+//     if(getLocalStorage == ""){
+//         listArr = [];
+//     }else{  
+//         listArr = JSON.parse(getLocalStorage);
+//     }
+//     listArr.push(userData);
+//     localStorage.setItem("New Todo", JSON.stringify(listArr));
+//     showTasks();
+// };
 
 
 // Showing Tasks add tasks

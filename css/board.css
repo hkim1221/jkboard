@@ -356,6 +356,11 @@ select:focus {
   position: relative;
 }
 
+.form-check:hover{
+  box-shadow: 0 0 0;
+
+}
+
 .checkbox-container span {
   position: absolute;
   right: -100rem;
