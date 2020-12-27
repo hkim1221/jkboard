@@ -1,7 +1,9 @@
 const inputBox = document.querySelector(".inputField input");
 const addBtn = document.querySelector(".inputField button");
 const formGroup = document.querySelector(".form-group");
-const checkBox = document.querySelector(".checkbox-container")
+const checkBox = document.querySelector(".checkbox-container");
+const modalForm= document.querySelector("#new-task-modal");
+const totalNum= document.querySelector
 
 // Adding input 
 inputBox.onkeyup = () => {
@@ -31,22 +33,6 @@ addBtn.addEventListener("click", (e) => {
     showTasks();
 });
 
-
-
-// addBtn.onclick = () => {
-//     let userData = inputBox.value;
-//     let getLocalStorage = localStorage.getItem("New Todo"); 
-//     if(getLocalStorage == ""){
-//         listArr = [];
-//     }else{  
-//         listArr = JSON.parse(getLocalStorage);
-//     }
-//     listArr.push(userData);
-//     localStorage.setItem("New Todo", JSON.stringify(listArr));
-//     showTasks();
-// };
-
-
 // Showing Tasks add tasks
 function showTasks(){
     let getLocalStorage = localStorage.getItem("New Todo"); 
@@ -72,3 +58,6 @@ function deleteTask(index) {
     localStorage.setItem("New Todo", JSON.stringify(listArr));
     showTasks();
 }
+
+
+// Modal stays except click 
