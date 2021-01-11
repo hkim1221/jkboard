@@ -541,14 +541,7 @@ select:focus {
   padding: 2rem;
 }
 
-.inputField button {
-  background: #fff;
-  opacity: 0.6;
-  pointer-events: none;
-  border-color: rgb(148, 147, 147);
-}
 
-.inputField button.active {
-  opacity: 1;
-  pointer-events: auto;
+.inputField button:hover{
+  color:black;
 }

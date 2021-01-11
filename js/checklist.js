@@ -1,61 +1,60 @@
-const inputBox = document.querySelector(".inputField input");
-const addBtn = document.querySelector(".inputField button");
-const formGroup = document.querySelector(".form-group");
-const checkBox = document.querySelector(".checkbox-container");
-const modalForm= document.querySelector("#new-task-modal");
+'use strict'
 
 
-// Adding input 
-inputBox.onkeyup = () => {
-    let userData = inputBox.value; 
-    if(userData.trim() != 0){
-        addBtn.classList.add("active");
-    }else {
-        addBtn.classList.remove("active");
-    }
+const addBtn = document.querySelector("#addbtn");
+const inputBox = document.querySelector("#checklist-add");
+const list = document.querySelector(".form-check");
+const form = document.querySelector("#input-form");
+const div = document.querySelector('.checkbox-container');
+const key = 'check-input';
+const check = document.querySelector('#checkbox');
+
+
+// get value from local stroage
+function getValue () {
+    if (localStorage.getItem('key') === null) {
+    key = [];
+}   else {
+    key=JSON.parse(localStorage.getItem('key'));}
 }
 
-showTasks();
-//   When user click add button
-
-addBtn.addEventListener("click", (e) => {
-    const userData = inputBox.value;
-    const getLocalStorage = localStorage.getItem("New Todo");
-    if(!userData){
-    return
-    }if(getLocalStorage == null){
-        listArr = [];
-    }else{ 
-        listArr = JSON.parse(getLocalStorage);
-    }
-    listArr.push(userData);
-    localStorage.setItem("New Todo", JSON.stringify(listArr));
-    showTasks();
+function lacateValue () {
+    let valueHTML ='';
+    key.map((check) => {
+    valueHTML +=`
+    <div class="form-check"> 
+    ${check.check}
+    ${check.value} <i class="fas fa-trash"></i></div>`;
+    value.innerHTML = valueHTML;
 });
+}
 
-// Showing Tasks add tasks
-function showTasks(){
-    let getLocalStorage = localStorage.getItem("New Todo"); 
-    if(getLocalStorage == null){
-        listArr = [];
+// Store value
+function storeValue (check) {
+    if (localStorage.getItem('key') === null) {
+    key = [];
+}   else {
+    key=JSON.parse(localStorage.getItem('key'));}
+key.push(check)
+localStorage.setItem('key', JSON.stringify(key));
+}
+
+// Add checklist value
+function addValue (e) {
+    e.preventDefault (); 
+    if (inputBox.value ==='') {
+    alert('add checklist');
     }else{
-        listArr = JSON.parse(getLocalStorage);
-    }
-    let newTaskTag = '';
-    listArr.forEach((element, index) => {
-        newTaskTag += `<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkbox_2"> ${element} <span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span> </div>`;
-    });
-    checkBox.innerHTML = newTaskTag;
-    inputBox.value="";
+    const checkValue = inputBox.value;
+    const textNode = `<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkbox_2"> ${checkValue} <i class="fas fa-trash"></i></div>`;
+    div.appendChild(document.createTextNode(textNode))
+}}
+
+function loadEvenetlistners () {
+
+    document.addEventListener('DOMContedntLoaded', getValue);
+    addBtn.addEventListener ('click', addValue);
+
 }
 
-// Delete Tasks
-function deleteTask(index) {
-    let getLocalStorage = localStorage.getItem("New Todo"); 
-    listArr = JSON.parse(getLocalStorage);
-    listArr.splice(index, 1);
-    // after remove update local storage
-    localStorage.setItem("New Todo", JSON.stringify(listArr));
-    showTasks();
-}
-
+loadEvenetlistners();
