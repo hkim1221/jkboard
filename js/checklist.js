@@ -6,38 +6,10 @@ const inputBox = document.querySelector("#checklist-add");
 const list = document.querySelector(".form-check");
 const form = document.querySelector("#input-form");
 const div = document.querySelector('.checkbox-container');
-const key = 'check-input';
 const check = document.querySelector('#checkbox');
 
 
-// get value from local stroage
-function getValue () {
-    if (localStorage.getItem('key') === null) {
-    key = [];
-}   else {
-    key=JSON.parse(localStorage.getItem('key'));}
-}
 
-function lacateValue () {
-    let valueHTML ='';
-    key.map((check) => {
-    valueHTML +=`
-    <div class="form-check"> 
-    ${check.check}
-    ${check.value} <i class="fas fa-trash"></i></div>`;
-    value.innerHTML = valueHTML;
-});
-}
-
-// Store value
-function storeValue (check) {
-    if (localStorage.getItem('key') === null) {
-    key = [];
-}   else {
-    key=JSON.parse(localStorage.getItem('key'));}
-key.push(check)
-localStorage.setItem('key', JSON.stringify(key));
-}
 
 // Add checklist value
 function addValue (e) {
@@ -46,15 +18,50 @@ function addValue (e) {
     alert('add checklist');
     }else{
     const checkValue = inputBox.value;
-    const textNode = `<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkbox_2"> ${checkValue} <i class="fas fa-trash"></i></div>`;
-    div.appendChild(document.createTextNode(textNode))
+    const list = document.createElement('div');
+    saveLocalTodos(inputBox.value); 
+    list.className = 'checkbox-container'
+    list.innerHTML = `<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="checkbox">
+    <label>${checkValue} </label>
+    <span><i class="fas fa-trash"></i></span>
+    </div>`;
+    check.appendChild(list)
+    
 }}
+
+// Delete Task
+
+function deleteValue (e) {
+    if (e.target.classList.contains('delete-icon')){
+    e.target.parentElement.remove();}
+
+}
+
+// Save to Localstorage
+function saveLocalTodos (todo) {
+    let key;
+    if (localStorage.getItem('key') === null) {
+    key = [];
+}   else {
+    key=JSON.parse(localStorage.getItem('key'));}
+    key.push(todo)
+    localStorage.setItem("key", JSON.stringify(key));  
+}
+
+
+
+
+
 
 function loadEvenetlistners () {
 
-    document.addEventListener('DOMContedntLoaded', getValue);
+    // document.addEventListener('DOMContedntLoaded', getValue);
     addBtn.addEventListener ('click', addValue);
+    
+    check.addEventListener('click', deleteValue);
 
 }
 
 loadEvenetlistners();
+
