@@ -526,14 +526,14 @@ select:focus {
   position: relative;
 }
 
-.checkbox-container span {
+.checkbox-container #delbtn {
   position: absolute;
   right: -100rem;
   cursor: pointer;
   overflow: hidden;
 }
 
-.checkbox-container:hover span {
+.checkbox-container:hover #delbtn {
   right: 0.2rem;
 }
 
@@ -544,4 +544,8 @@ select:focus {
 
 .inputField button:hover{
   color:black;
+}
+
+.checked {
+  text-decoration: line-through;
 }
