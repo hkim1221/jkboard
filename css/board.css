@@ -546,6 +546,6 @@ select:focus {
   color:black;
 }
 
-.checked {
+/* input[type="checkbox"]:checked + label.form-check-label {
   text-decoration: line-through;
-}
+} */

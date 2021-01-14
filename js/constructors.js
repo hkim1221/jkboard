@@ -9,13 +9,14 @@ class TaskList {
 }
 // Task card constructor
 class TaskCard {
-  constructor(title, desc, member, date, tag, status) {
+  constructor(title, desc, member, date, tag, status, checklist) {
     this.title = title;
     this.desc = desc;
     this.member = member;
     this.date = date;
     this.tag = tag;
     this.status = status;
+    this.checklist = checklist;
     this.id = uuidV4();
   }
 }

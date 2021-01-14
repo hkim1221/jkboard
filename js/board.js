@@ -23,6 +23,7 @@ const newMemberInput = document.querySelector("#new-task-member");
 const newDateInput = document.querySelector("#new-task-date");
 const newTagInput = document.querySelector("#new-task-tag");
 const newStatusInput = document.querySelector("#new-task-status");
+const newChecklistInput =document.querySelector("#new-task-checklist")
 const deleteTaskBtn = document.querySelector("#delete-task-button");
 const currentTitle = document.querySelector("#current-task-title-hide");
 const currentDesc = document.querySelector("#current-task-desc-hide");
