@@ -10,7 +10,9 @@ const check = document.querySelector('#checkbox');
 const deltecon = document.querySelector('.delete-icon');
 const checkBox = document.getElementById("checkbox-input");
 const checkBoxLabel = document.getElementById("checklabel");
+const checkOne = document.querySelectorAll('input[type=checkbox]');
 const checklabel = document.getElementById("new-task-checklist");
+
 
 // Add checklist value
 function addValue(e) {
@@ -29,8 +31,8 @@ function addValue(e) {
     <i class="fas fa-trash" id="delbtn"></i>
     </div>`;
 
-        check.appendChild(list)
-        console.log(list)
+    check.appendChild(list)
+    inputBox.value ="";
     }
 }
 
@@ -46,11 +48,23 @@ function deleteValue(e) {
     }
 }
 
-checkBox.addEventListener('change', function(e) {
-    const todo = checkBoxLabel;
-    console.log(todo);
-    todo.style.textDecoration = checkBox.checked ? 'line-through' : 'none';
-});
+
+// Save to check localstorage
+
+// function saved() {
+//     let i;
+//     for (i = 0; i < checkOne.length; i++) {
+//         localStorage.setItem(checkOne[i].value, checkOne[i].checked);
+//     }
+// }
+
+// function load() {
+//     let i;
+//     for (i = 0; i < checkOne.length; i++) { 
+//         checkOne[i].checked = localStorage.getItem(checkOne[i].value) === "true" ? true : false;
+//     }
+// }
+
 
 
 // Save to Localstorage
@@ -64,6 +78,14 @@ function saveLocalTodos(todo) {
 
     todos.push(todo)
     localStorage.setItem("todos", JSON.stringify(todos));
+
+}
+
+
+function saveCheck() {
+    localStorage.setItem("checkbox-input", checkBox.checked);
+    const checked = JSON.parse(localStorage.getItem("checkbox-input"));
+    checkBox.checked = checked;
 }
 
 
@@ -89,6 +111,8 @@ function getTodo() {
     });
 }
 
+
+
 function removeLocalTodos(todo){
     let todos;
     if (localStorage.getItem('todos') === null) {
@@ -110,7 +134,9 @@ function loadEvenetlistners() {
     addBtn.addEventListener('click', addValue);
     document.addEventListener('DOMContentLoaded', getTodo)
     check.addEventListener('click', deleteValue);
+    checkBox.addEventListener('click',saved, false);
 }
 
+window.onload = load;
 loadEvenetlistners();
 
