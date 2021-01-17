@@ -273,3 +273,118 @@ function dragComplete(e) {
   clearBoard();
   renderData(jData);
 }
+
+const addBtn = document.querySelector("#addbtn");
+const inputBox = document.querySelector("#checklist-add");
+const check = document.querySelector('#checkbox');
+
+
+// Add checklist value
+function addValue(e) {
+    e.preventDefault();
+    if (inputBox.value === '') {
+        alert('add checklist');
+    } else {
+        const checkValue = inputBox.value;
+        const list = document.createElement('div');
+        saveLocalTodos(inputBox.value);
+        list.id = 'checkbox'
+        list.className = 'checkbox-container'
+        list.innerHTML = `<div class="form-check">
+    <input class="form-check-input" type="checkbox" name="checking" value="" id="checkbox-input">
+    <label class="form-check-label" id="checklabel new-task-checklist">${checkValue} </label>
+    <i class="fas fa-trash" id="delbtn"></i>
+    </div>`;
+
+    check.appendChild(list)
+    inputBox.value ="";
+    
+
+    }
+}
+
+// Delete Task
+
+function deleteValue(e) {
+    const item = e.target;
+    const todo = item.parentElement;
+    if (item.classList.contains("fas", "fa-trash")) {
+        removeLocalTodos(todo);
+        todo.remove();
+        console.log(item.classList)
+    }
+}
+
+function checkboxcheck() {
+  const checkbox = document.getElementById("checkbox-input")
+  const input = document.getElementById("checklabel")
+
+  if (checkbox.cehcked == true){
+    input.style.textDecoration = "line-through";
+  }else {
+    input.style.textDecoration = "none";
+  }
+  }
+  checkboxcheck()
+
+
+// Save to Localstorage
+function saveLocalTodos(todo) {
+    let todos;
+    if (localStorage.getItem('todos') === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+
+    todos.push(todo)
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+}
+
+//get from localstroge
+function getTodo() {
+    let todos;
+    if (localStorage.getItem('todos') === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+    todos.forEach(function (todo){
+        const checkValue = inputBox.value;
+        const list = document.createElement('div');
+        list.id = 'checkbox'
+        list.className = 'checkbox-container'
+        list.innerHTML = `<div class="form-check">
+    <input class="form-check-input" name="checking" type="checkbox" value="" id="checkbox-input">
+    <label class="form-check-label" id="checklabel">${checkValue} </label>
+    <i class="fas fa-trash" id="delbtn"></i>
+    </div>`;
+
+        check.appendChild(list)
+    });
+
+}
+
+//remove from local storage
+function removeLocalTodos(todo){
+    let todos;
+    if (localStorage.getItem('todos') === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+    const todoIndex= todo.children[1].innerText;
+    todos.splice(todos.indexOf(todoIndex), 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+
+
+
+function loadEvenetlistners() {
+    addBtn.addEventListener('click', addValue);
+    document.addEventListener('DOMContentLoaded', getTodo)
+    check.addEventListener('click', deleteValue);
+}
+loadEvenetlistners();
