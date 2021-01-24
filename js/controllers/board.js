@@ -277,6 +277,37 @@ function dragComplete(e) {
 const addBtn = document.querySelector("#addbtn");
 const inputBox = document.querySelector("#checklist-add");
 const check = document.querySelector('#checkbox');
+const DeleteBtn = document.querySelector('.fa-trash');
+
+// class checklistModel {
+//   constructor (checked, input){
+//   this.checked = checked;
+//   this.input = input;
+//   // this.id = uuidV4();
+//   }
+// }
+
+
+
+// document.addEventListener ('click',(e) => {
+//   console.log(e.currentTarget);
+//   if (e.target.matches("#addbtn")) {
+//     e.preventDefault();
+    
+
+//     localStorage.setItem("checklist",JSON.stringify(checklistModel));
+//     console.log(localStorage)
+//   const checklist = new checklistModel (checked, input)
+//   const item = e.target;
+//   console.log(item);
+//   const checked = e.target.closest("form-check-input");
+//   const input = inputBox.value;
+  
+// };
+// })
+
+
+
 
 
 // Add checklist value
@@ -299,7 +330,6 @@ function addValue(e) {
     check.appendChild(list)
     inputBox.value ="";
     
-
     }
 }
 
@@ -315,17 +345,6 @@ function deleteValue(e) {
     }
 }
 
-function checkboxcheck() {
-  const checkbox = document.getElementById("checkbox-input")
-  const input = document.getElementById("checklabel")
-
-  if (checkbox.cehcked == true){
-    input.style.textDecoration = "line-through";
-  }else {
-    input.style.textDecoration = "none";
-  }
-  }
-  checkboxcheck()
 
 
 // Save to Localstorage
@@ -388,3 +407,4 @@ function loadEvenetlistners() {
     check.addEventListener('click', deleteValue);
 }
 loadEvenetlistners();
+
